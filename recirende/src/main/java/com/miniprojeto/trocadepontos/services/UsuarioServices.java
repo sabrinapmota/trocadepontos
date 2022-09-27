@@ -22,7 +22,6 @@ public class UsuarioServices {
         usuarioModel.getEmail();
         usuarioModel.getEndereco();
         usuarioModel.getEstado();
-
             }
 
 

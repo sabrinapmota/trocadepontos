@@ -24,7 +24,7 @@ public class UsuarioModel {
     private String cpf;
     @Column(nullable = false, unique = true, length = 20)
     private String email;
-    @Column(nullable = false, length = 250)
+    @Column(nullable = false, unique = false, length = 250)
     private String endereco;
     @Column(nullable = false, unique = true, length = 20)
     private String estado;
