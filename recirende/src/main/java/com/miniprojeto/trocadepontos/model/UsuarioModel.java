@@ -17,7 +17,7 @@ public class UsuarioModel {
 
     @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
 
     @Column(nullable = false, unique = true, length = 30)
@@ -26,9 +26,9 @@ public class UsuarioModel {
     private String cpf;
     @Column(nullable = false, unique = true, length = 20)
     private String email;
-    @Column(nullable = false, unique = false, length = 255)
+    @Column(nullable = false, length = 250)
     private String endereco;
-<<<<<<< HEAD
+
     @Column(nullable = false, unique = true, length = 20)
     private String estado;
     private Integer pontuacao;
