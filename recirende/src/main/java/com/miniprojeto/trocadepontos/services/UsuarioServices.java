@@ -30,8 +30,10 @@ public class UsuarioServices {
     public List<UsuarioModel> buscarTodos() {
         return usuarioRepository.findAll();
     }
-
-    public void deletarUser(long id) {
+public UsuarioModel alterarUser(UsuarioModel usuarioModel) {
+        return  usuarioRepository.save(usuarioModel);
+}
+    public void deletarUser(Long id) {
         usuarioRepository.deleteById(id);
     }
 }
