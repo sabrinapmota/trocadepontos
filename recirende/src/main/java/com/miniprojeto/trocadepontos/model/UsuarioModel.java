@@ -3,10 +3,8 @@ package com.miniprojeto.trocadepontos.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 
 @Entity
 @Data
@@ -16,8 +14,8 @@ import javax.validation.constraints.Email;
 public class UsuarioModel {
 
     @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
 
     @Column(nullable = false, unique = true, length = 30)
@@ -28,7 +26,6 @@ public class UsuarioModel {
     private String email;
     @Column(nullable = false, unique = false, length = 250)
     private String endereco;
-
     @Column(nullable = false, unique = true, length = 20)
     private String estado;
     private Integer pontuacao;
