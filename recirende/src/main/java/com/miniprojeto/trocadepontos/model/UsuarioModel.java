@@ -14,16 +14,12 @@ import javax.validation.constraints.Email;
 @NoArgsConstructor
 @Table(name = "TB_USUARIO")
 public class UsuarioModel {
-<<<<<<< HEAD
 
     @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-=======
-    private long id;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
->>>>>>> 5cdf41e845af7a84b228c2e23f1197af63759ccb
+
+
     @Column(nullable = false, unique = true, length = 30)
     private String nome;
     @Column(nullable = false, unique = true, length = 11)
@@ -36,6 +32,4 @@ public class UsuarioModel {
     @Column(nullable = false, unique = true, length = 20)
     private String estado;
     private Integer pontuacao;
-=======
->>>>>>> 5cdf41e845af7a84b228c2e23f1197af63759ccb
 }
