@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "embalagens")
-public class EmbalagemModel {
+public class EmbalagemModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,4 +31,8 @@ public class EmbalagemModel {
 
     @Column(length = 50)
     private  Integer pontoEmbalagem;
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", referencedColumnName = "idUsuario")
+    private UsuarioModel usuario;
 }
