@@ -17,14 +17,20 @@ public class UsuarioServices {
     }
 
     public UsuarioModel cadastrarUsuario(UsuarioModel usuarioModel) {
+
         usuarioModel.getNome();
         usuarioModel.getCpf();
         usuarioModel.getEmail();
         usuarioModel.getEndereco();
         usuarioModel.getEstado();
+        usuarioRepository.save(usuarioModel);
+    }
 
-            }
+    public List<UsuarioModel> buscarTodos() {
+        return usuarioRepository.findAll();
+    }
+    public void deletarUser(long id) {
+        usuarioRepository.deleteById(id);
+    }
 
-
-}
         }
