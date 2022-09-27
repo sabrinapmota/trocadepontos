@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Data
@@ -28,5 +29,5 @@ public class UsuarioModel {
     private String endereco;
     @Column(nullable = false, unique = true, length = 20)
     private String estado;
-    private Integer pontuacao;
+    private BigDecimal pontuacao;
 }

@@ -6,6 +6,6 @@ import java.math.BigDecimal;
 
 public interface Calculo {
 
-    BigDecimal calcular(UsuarioModel usuarioModel);
+    public BigDecimal calcular(UsuarioModel usuarioModel);
 
 }
