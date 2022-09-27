@@ -1,4 +1,8 @@
 package com.miniprojeto.trocadepontos.repository;
 
-public class IUsuarioRepository {
+import com.miniprojeto.trocadepontos.model.UsuarioModel;
+import org.hibernate.boot.JaccPermissionDefinition;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface IUsuarioRepository extends JpaRepository<UsuarioModel, Long> {
 }
