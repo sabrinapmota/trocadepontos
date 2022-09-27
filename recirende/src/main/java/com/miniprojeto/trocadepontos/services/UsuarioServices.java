@@ -5,6 +5,7 @@ import com.miniprojeto.trocadepontos.repository.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,18 +24,15 @@ public class UsuarioServices {
         usuarioModel.getEmail();
         usuarioModel.getEndereco();
         usuarioModel.getEstado();
-<<<<<<< HEAD
-        usuarioRepository.save(usuarioModel);
+        return usuarioRepository.save(usuarioModel);
     }
 
     public List<UsuarioModel> buscarTodos() {
         return usuarioRepository.findAll();
     }
+
     public void deletarUser(long id) {
         usuarioRepository.deleteById(id);
     }
-=======
-            }
->>>>>>> cede7be81269283ec56a511bfd823f0fcf064b93
+}
 
-        }
