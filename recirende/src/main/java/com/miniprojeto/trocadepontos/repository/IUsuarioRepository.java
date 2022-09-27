@@ -3,6 +3,9 @@ package com.miniprojeto.trocadepontos.repository;
 import com.miniprojeto.trocadepontos.model.UsuarioModel;
 import org.hibernate.boot.JaccPermissionDefinition;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface IUsuarioRepository extends JpaRepository<UsuarioModel, Long> {
+@Repository
+public interface IUsuarioRepository extends JpaRepository<UsuarioModel, Long id> {
+
 }
