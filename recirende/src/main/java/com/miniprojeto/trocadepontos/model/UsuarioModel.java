@@ -36,8 +36,8 @@ public class UsuarioModel {
     @Column
     private Troca troca;
 
-//    @OneToMany(mappedBy = "usuario", targetEntity = EmbalagemModel.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    List<EmbalagemModel> embalagemModels;
+    @OneToMany(mappedBy = "usuario", targetEntity = EmbalagemModel.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<EmbalagemModel> embalagemModels;
 
     public UsuarioModel(Long idUsuario, String nome, String cpf, String email, String endereco, String estado, Troca troca) {
         this.idUsuario = idUsuario;

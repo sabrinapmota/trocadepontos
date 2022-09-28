@@ -26,7 +26,7 @@ public class UsuarioController {
         return ResponseEntity.ok().body(usuarioServices.buscarTodos());
     }
 
-    @PutMapping(path = "/{idUsuario}")
+    @PatchMapping(path = "/{idUsuario}")
     public ResponseEntity<UsuarioModel> alterarUsuario(@Valid @PathVariable Long idUsuario, @RequestBody UsuarioModel usuarioModel) {
         return ResponseEntity.ok().body(usuarioServices.alterarUser(idUsuario,usuarioModel));
     }
