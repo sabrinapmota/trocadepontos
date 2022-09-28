@@ -1,11 +1,13 @@
 package com.miniprojeto.trocadepontos.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Data
@@ -22,6 +24,7 @@ public class UsuarioModel {
     @Column(nullable = false, unique = true, length = 30)
     private String nome;
     @Column(nullable = false, unique = true, length = 11)
+    @JsonIgnore
     private String cpf;
     @Column(nullable = false, unique = true, length = 20)
     private String email;
@@ -30,4 +33,11 @@ public class UsuarioModel {
     @Column(nullable = false, unique = true, length = 20)
     private String estado;
     private BigDecimal pontuacao;
+
+    @OneToMany(mappedBy = "usuarioModel", targetEntity = EmbalagemModel.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<EmbalagemModel> embalagemModels;
+
+
+    public UsuarioModel(Object o, String nome, String cpf, String email, String endereco, String estado, BigDecimal pontuacao) {
+    }
 }

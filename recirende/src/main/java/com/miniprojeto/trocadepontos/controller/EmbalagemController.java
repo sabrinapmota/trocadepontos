@@ -5,6 +5,7 @@ import com.miniprojeto.trocadepontos.services.EmbalagemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping (path = "/embalagens")
+@Validated
 public class EmbalagemController {
 
     @Autowired
@@ -25,17 +27,18 @@ public class EmbalagemController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<EmbalagemModel> cadastrarEmbalagem(@RequestBody EmbalagemModel embalagem){
+    public ResponseEntity<EmbalagemModel> cadastrarEmbalagem(@Valid @RequestBody EmbalagemModel embalagem){
         return ResponseEntity.ok(service.cadastrarEmbalagem(embalagem));
     }
 
     @PutMapping (path ="/{id}")
-    public ResponseEntity<EmbalagemModel> alterarEmbalagem(@RequestBody EmbalagemModel embalagem){
-        return ResponseEntity.ok(service.alterarEmbalagem(embalagem));
+    public ResponseEntity<EmbalagemModel> alterarEmbalagem(@Valid @PathVariable Long id, @RequestBody EmbalagemModel embalagem){
+        return ResponseEntity.ok(service.alterarEmbalagem(id,embalagem));
     }
 
     @DeleteMapping (path = "/{id}")
-    public void deletarEmbalagem(@PathVariable Long idEmbalagem){
+    public String deletarEmbalagem(@PathVariable Long idEmbalagem){
         service.deletarEmbalagem(idEmbalagem);
+        return "id "+idEmbalagem+" Deletado";
     }
 }

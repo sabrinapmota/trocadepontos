@@ -22,8 +22,8 @@ public class EmbalagemService {
         return repository.save(embalagemModel);
     }
 
-    public EmbalagemModel  alterarEmbalagem(EmbalagemModel embalagemModel){
-        return  repository.save(embalagemModel);
+    public EmbalagemModel  alterarEmbalagem(Long id,EmbalagemModel embalagemModel){
+        return  repository.save(id ,embalagemModel);
     }
 
     public void deletarEmbalagem(Long idEmbalagem){

@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.math.BigDecimal;
 
 @Data
 @AllArgsConstructor
@@ -25,5 +26,6 @@ public class UsuarioRequest {
     private String endereco;
     @NotEmpty
     private String Estado;
+    private BigDecimal pontuacao;
 
 }
