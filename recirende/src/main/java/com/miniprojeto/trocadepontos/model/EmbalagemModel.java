@@ -1,11 +1,13 @@
 package com.miniprojeto.trocadepontos.model;
 
+import com.miniprojeto.trocadepontos.enums.Troca;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -24,13 +26,16 @@ public class EmbalagemModel implements Serializable {
     private String nomeMarca;
 
     @Column(length = 50)
+    @Size()
     private Integer numeroSerie;
 
     @Column(length = 50)
-    private LocalDate dataCadastro;
+    private LocalDate dataCadastro = LocalDate.now();
 
     @Column(length = 50)
-    private  Integer pontoEmbalagem;
+    private  Integer pontoEmbalagem ;
+    @Column
+    private Troca troca = null;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario", referencedColumnName = "idUsuario")

@@ -18,7 +18,7 @@ public class UsuarioModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idUsuario;
 
 
     @Column(nullable = false, unique = true, length = 30)
@@ -34,7 +34,7 @@ public class UsuarioModel {
     private String estado;
     private BigDecimal pontuacao;
 
-    @OneToMany(mappedBy = "usuarioModel", targetEntity = EmbalagemModel.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usuario", targetEntity = EmbalagemModel.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<EmbalagemModel> embalagemModels;
 
 

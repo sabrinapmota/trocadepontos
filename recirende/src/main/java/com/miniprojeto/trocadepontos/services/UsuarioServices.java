@@ -22,6 +22,8 @@ public class UsuarioServices {
     }
 
     public UsuarioResponse cadastrarUsuario(UsuarioRequest usuarioRequest) {
+
+
         UsuarioModel usuarioModel = new UsuarioModel(null, usuarioRequest.getNome(), usuarioRequest.getCpf(),
                 usuarioRequest.getEmail(), usuarioRequest.getEndereco(), usuarioRequest.getEstado(),
                 usuarioRequest.getPontuacao());

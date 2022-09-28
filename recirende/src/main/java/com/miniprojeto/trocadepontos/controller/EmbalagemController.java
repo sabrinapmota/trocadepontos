@@ -31,7 +31,7 @@ public class EmbalagemController {
         return ResponseEntity.ok(service.cadastrarEmbalagem(embalagem));
     }
 
-    @PutMapping (path ="/{id}")
+    @PatchMapping(path ="/{id}")
     public ResponseEntity<EmbalagemModel> alterarEmbalagem(@Valid @PathVariable Long id, @RequestBody EmbalagemModel embalagem){
         return ResponseEntity.ok(service.alterarEmbalagem(id,embalagem));
     }
