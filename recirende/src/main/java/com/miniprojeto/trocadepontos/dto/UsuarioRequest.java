@@ -1,16 +1,12 @@
 package com.miniprojeto.trocadepontos.dto;
 
-import com.miniprojeto.trocadepontos.enums.Troca;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import java.math.BigDecimal;
 
 @Data
 @AllArgsConstructor
@@ -27,7 +23,7 @@ public class UsuarioRequest {
     @NotEmpty
     private String estado;
 
-    @Enumerated(value = EnumType.STRING)
-    private Troca troca;
+
+    private String troca;
 
 }

@@ -2,7 +2,6 @@ package com.miniprojeto.trocadepontos.services;
 
 import com.miniprojeto.trocadepontos.dto.UsuarioRequest;
 import com.miniprojeto.trocadepontos.dto.UsuarioResponse;
-import com.miniprojeto.trocadepontos.enums.Troca;
 import com.miniprojeto.trocadepontos.enums.factory.CalculoFactory;
 import com.miniprojeto.trocadepontos.exceptions.EntityNotFoundException;
 import com.miniprojeto.trocadepontos.model.UsuarioModel;
@@ -46,18 +45,13 @@ public class UsuarioServices {
                 () -> new EntityNotFoundException("ID not found " + idUsuario));
 
         UsuarioModel alterar = usuarioRepository.findById(usuarioModel.getIdUsuario()).get();
-        if (usuarioModel.getTroca() == Troca.INGRESSO_CINEMA) {
-            alterar.setTroca(Troca.INGRESSO_CINEMA);
-        }
-        if (usuarioModel.getTroca() == Troca.DESCONTO_R$_30) {
-            alterar.setTroca(Troca.DESCONTO_R$_30);
-        }
-        if (usuarioModel.getTroca() == Troca.CELULAR) {
-            alterar.setTroca(Troca.CELULAR);
-        }
-        BigDecimal reposta = (BigDecimal) CalculoFactory.CalculoPontuacao(alterar.getTroca()).calcular(usuarioModel);
-        alterar.setPontuacao(reposta);
+
+        BigDecimal retiradaDePontos = CalculoFactory.CalculoPontuacao(usuarioModel.getTroca()).calcular(alterar);
+        alterar.setPontuacao(retiradaDePontos);
+        alterar.setTroca(usuarioModel.getTroca());
+
         return usuarioRepository.save(alterar);
+
     }
 
     public void deletarUser(Long idUsuario) {

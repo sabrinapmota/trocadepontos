@@ -32,8 +32,6 @@ public class EmbalagemService {
 
         embalagemModel.setPontoEmbalagem(new BigDecimal(1500));
 
-        //Buscar usuario através do "id" que está na embalagemModel
-        //Com o usuario pegar get.Ponto
         UsuarioModel usuarioModel = usuarioRepository.findById(embalagemModel.getUsuario().getIdUsuario()).get();
         usuarioModel.setPontuacao(usuarioModel.getPontuacao().add(embalagemModel.getPontoEmbalagem()));
         usuarioRepository.save(usuarioModel);
