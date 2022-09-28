@@ -1,9 +1,10 @@
 package com.miniprojeto.trocadepontos.service;
 
-import com.miniprojeto.trocadepontos.dto.UsuarioRequest;
-import com.miniprojeto.trocadepontos.dto.UsuarioResponse;
+import com.miniprojeto.trocadepontos.model.EmbalagemModel;
 import com.miniprojeto.trocadepontos.model.UsuarioModel;
+import com.miniprojeto.trocadepontos.repository.IEmbalagemRepository;
 import com.miniprojeto.trocadepontos.repository.IUsuarioRepository;
+import com.miniprojeto.trocadepontos.services.EmbalagemService;
 import com.miniprojeto.trocadepontos.services.UsuarioServices;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,13 +19,13 @@ import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
-public class UsuarioServiceTest {
+public class EmbalagemServiceTest {
 
     @Mock
-    UsuarioServices mockUsuario;
+    EmbalagemService mockEmbalagem;
 
     @MockBean
-    IUsuarioRepository mockRepository;
+    IEmbalagemRepository mockRepository;
 
     @BeforeEach
     private void setUp() {
@@ -33,24 +34,23 @@ public class UsuarioServiceTest {
 
 
     @Test
-    void buscaUsuarioTest() {
-        List<UsuarioModel> listaUsuario = mockUsuario.buscarTodos();
-        Assertions.assertTrue(listaUsuario.isEmpty());    }
-
-    @Test
-    void buscaIdTest() {
-        Long idUsuario = Long.valueOf(1);
-        Optional<UsuarioModel> usuario = mockUsuario.buscarId(idUsuario);
-        Assertions.assertTrue(usuario.isEmpty());
+    void buscaEmbalagemTest() {
+        List<EmbalagemModel> listaEmbalagens = mockEmbalagem.mostrarEmbalagens();
+        Assertions.assertTrue(listaEmbalagens.isEmpty());
     }
 
     @Test
-    void cadastrarUsuarioTest() {
+    void buscaIdTest() {
+        Long idEmbalagem = Long.valueOf(1);
+        Optional<EmbalagemModel> embalagem  = mockEmbalagem.buscarId(idEmbalagem);
+        Assertions.assertTrue(embalagem.isEmpty());
+    }
 
-        // quando no repository, com a função existById existir algum id do tipo long ele retorna true
+    @Test
+    void cadastrarEmbalagemTest() {
+
         Mockito.when(mockRepository.existsById(Mockito.anyLong())).thenReturn(true);
-        mockRepository.save(new UsuarioModel());
-        //veirificar chamando o repository uma unica vez e salva no usuario model.
-        Mockito.verify(mockRepository ,Mockito.times(1)).save((new UsuarioModel()));
+        mockRepository.save(new EmbalagemModel());
+        Mockito.verify(mockRepository ,Mockito.times(1)).save(new EmbalagemModel());
     }
 }
