@@ -7,31 +7,40 @@ import com.miniprojeto.trocadepontos.exceptions.EntityNotFoundException;
 import com.miniprojeto.trocadepontos.model.EmbalagemModel;
 import com.miniprojeto.trocadepontos.model.UsuarioModel;
 import com.miniprojeto.trocadepontos.repository.IEmbalagemRepository;
+import com.miniprojeto.trocadepontos.repository.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class EmbalagemService {
 
     @Autowired
     private IEmbalagemRepository repository;
+    @Autowired
+    private IUsuarioRepository usuarioRepository;
 
 
     public List<EmbalagemModel> mostrarEmbalagens(){
-        return repository.findAll();
+        List<EmbalagemModel > embalagemModels = repository.findAll();
+        return embalagemModels;
     }
 
     public EmbalagemModel cadastrarEmbalagem(EmbalagemModel embalagemModel) {
 
         embalagemModel.setPontoEmbalagem(new BigDecimal(1500));
 
-        UsuarioModel usuarioModel = new UsuarioModel();
-        usuarioModel.setPontuacao(embalagemModel.getPontoEmbalagem().add(new BigDecimal(1500)));
+        //Buscar usuario através do "id" que está na embalagemModel
+        //Com o usuario pegar get.Ponto
+        UsuarioModel usuarioModel = usuarioRepository.findById(embalagemModel.getUsuario().getIdUsuario()).get();
+        usuarioModel.setPontuacao(usuarioModel.getPontuacao().add(embalagemModel.getPontoEmbalagem()));
+        usuarioRepository.save(usuarioModel);
 
         return repository.save(embalagemModel);
     }
@@ -48,5 +57,9 @@ public class EmbalagemService {
     }
 
 
+    public Optional<EmbalagemModel> buscarId(Long idEmbalagem) {
+        return Optional.ofNullable(repository.findById(idEmbalagem).orElseThrow(
+                () -> new EntityNotFoundException("ID not found " + idEmbalagem)));
+    }
 }
 

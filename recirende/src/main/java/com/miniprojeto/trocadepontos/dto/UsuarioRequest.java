@@ -16,10 +16,8 @@ import java.math.BigDecimal;
 public class UsuarioRequest {
     @NotEmpty
     private String nome;
-
     @CPF
     private String cpf;
-
     @Email
     private String email;
     @NotEmpty

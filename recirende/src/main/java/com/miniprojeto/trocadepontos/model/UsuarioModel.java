@@ -1,6 +1,8 @@
 package com.miniprojeto.trocadepontos.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.miniprojeto.trocadepontos.enums.Troca;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,6 +28,7 @@ public class UsuarioModel {
     @Column()
     private String nome;
     @Column()
+    @JsonIgnore
     private String cpf;
     @Column()
     private String email;
@@ -32,12 +36,11 @@ public class UsuarioModel {
     private String endereco;
     @Column()
     private String estado;
+    @Column
     private BigDecimal pontuacao;
     @Column
     private Troca troca;
 
-    @OneToMany(mappedBy = "usuario", targetEntity = EmbalagemModel.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    List<EmbalagemModel> embalagemModels;
 
     public UsuarioModel(Long idUsuario, String nome, String cpf, String email, String endereco, String estado, Troca troca) {
         this.idUsuario = idUsuario;
@@ -48,4 +51,8 @@ public class UsuarioModel {
         this.estado = estado;
         this.troca = troca;
     }
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "usuario",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    List<EmbalagemModel> embalagemModels = new ArrayList<>();
 }

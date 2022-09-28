@@ -1,16 +1,16 @@
 package com.miniprojeto.trocadepontos.model;
 
-import com.miniprojeto.trocadepontos.enums.Troca;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Comment;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -35,7 +35,7 @@ public class EmbalagemModel implements Serializable {
     @Column(length = 50)
     private BigDecimal pontoEmbalagem ;
 
-
+   @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "id_usuario", referencedColumnName = "idUsuario")
     private UsuarioModel usuario;

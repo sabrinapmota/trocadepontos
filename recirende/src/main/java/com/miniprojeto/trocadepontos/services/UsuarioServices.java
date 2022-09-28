@@ -25,12 +25,12 @@ public class UsuarioServices {
 
     public UsuarioResponse cadastrarUsuario(UsuarioRequest usuarioRequest) {
 
-        //BigDecimal reposta = (BigDecimal) CalculoFactory.CalculoPontuacao(usuarioRequest.getTroca()).calcular(new UsuarioModel());
+        BigDecimal reposta = (BigDecimal) CalculoFactory.CalculoPontuacao(usuarioRequest.getTroca()).calcular(new UsuarioModel());
 
 
         UsuarioModel usuarioModel = new UsuarioModel(null,usuarioRequest.getNome(),usuarioRequest.getCpf(),
                 usuarioRequest.getEmail(),usuarioRequest.getEndereco(), usuarioRequest.getEstado(),usuarioRequest.getTroca());
-        usuarioModel.setPontuacao(null);
+        usuarioModel.setPontuacao(new BigDecimal("0"));
         usuarioRepository.save(usuarioModel);
 
         UsuarioResponse usuarioResponse = new UsuarioResponse(usuarioModel.getIdUsuario(),usuarioModel.getNome(), usuarioModel.getPontuacao());
@@ -42,6 +42,8 @@ public class UsuarioServices {
     }
 
     public UsuarioModel alterarUser(Long idUsuario, UsuarioModel usuarioModel) {
+        UsuarioModel alterar = usuarioRepository.findById(usuarioModel.getIdUsuario()).get();
+
         usuarioRepository.findById(idUsuario).orElseThrow(
                 () -> new EntityNotFoundException("ID not found " + idUsuario));
         return usuarioRepository.save(usuarioModel);
