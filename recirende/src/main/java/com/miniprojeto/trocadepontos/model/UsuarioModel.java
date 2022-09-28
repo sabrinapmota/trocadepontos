@@ -22,25 +22,21 @@ public class UsuarioModel {
     private Long idUsuario;
 
 
-    @Column(nullable = false, unique = true, length = 30)
+    @Column()
     private String nome;
-    @Column(nullable = false, unique = true, length = 11)
-    @JsonIgnore
+    @Column()
     private String cpf;
-    @Column(nullable = false, unique = true, length = 20)
+    @Column()
     private String email;
-    @Column(nullable = false, unique = false, length = 250)
+    @Column()
     private String endereco;
-    @Column(nullable = false, unique = true, length = 20)
+    @Column()
     private String estado;
     private BigDecimal pontuacao;
     @Column
-    private Troca troca = null;
+    private Troca troca;
 
-    @OneToMany(mappedBy = "usuario", targetEntity = EmbalagemModel.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    List<EmbalagemModel> embalagemModels;
+//    @OneToMany(mappedBy = "usuario", targetEntity = EmbalagemModel.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    List<EmbalagemModel> embalagemModels;
 
-
-    public UsuarioModel(Object o, String nome, String cpf, String email, String endereco, String estado, BigDecimal pontuacao,Troca troca1) {
-    }
 }

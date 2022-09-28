@@ -26,13 +26,14 @@ public class UsuarioServices {
     public UsuarioResponse cadastrarUsuario(UsuarioRequest usuarioRequest) {
 
         BigDecimal reposta = (BigDecimal) CalculoFactory.CalculoPontuacao(usuarioRequest.getTroca()).calcular(usuarioRequest);
+        usuarioRequest.setPontuacao(reposta);
 
-        UsuarioModel usuarioModel = new UsuarioModel(null, usuarioRequest.getNome(), usuarioRequest.getCpf(),
-                usuarioRequest.getEmail(), usuarioRequest.getEndereco(), usuarioRequest.getEstado(),
-                usuarioRequest.getPontuacao(), usuarioRequest.getTroca());
+        UsuarioModel usuarioModel = new UsuarioModel(null,usuarioRequest.getNome(),usuarioRequest.getCpf(),
+                usuarioRequest.getEmail(),usuarioRequest.getEndereco(), usuarioRequest.getEstado(),
+                usuarioRequest.getPontuacao(),usuarioRequest.getTroca());
         usuarioRepository.save(usuarioModel);
 
-        UsuarioResponse usuarioResponse = new UsuarioResponse(usuarioModel.getNome(), usuarioModel.getPontuacao());
+        UsuarioResponse usuarioResponse = new UsuarioResponse(usuarioModel.getIdUsuario(),usuarioModel.getNome(), usuarioModel.getPontuacao());
         return usuarioResponse;
     }
 

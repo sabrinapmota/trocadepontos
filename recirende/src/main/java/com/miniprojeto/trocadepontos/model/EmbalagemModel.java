@@ -33,7 +33,7 @@ public class EmbalagemModel implements Serializable {
     private LocalDate dataCadastro = LocalDate.now();
 
     @Column(length = 50)
-    private  Integer pontoEmbalagem ;
+    private  Integer pontoEmbalagem = 1500;
 
 
     @ManyToOne

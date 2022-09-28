@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UsuarioResponse {
-
+    private Long id;
     private String nome;
     private BigDecimal pontuacao;
 
