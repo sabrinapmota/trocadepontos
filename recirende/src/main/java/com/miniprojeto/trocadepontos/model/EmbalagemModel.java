@@ -37,7 +37,7 @@ public class EmbalagemModel implements Serializable {
     @Column(length = 50)
     private BigDecimal pontoEmbalagem;
 
-    @JsonBackReference
+    //@JsonBackReference
     @ManyToOne
     @JoinColumn(name = "id_usuario", referencedColumnName = "idUsuario")
     private UsuarioModel usuario;

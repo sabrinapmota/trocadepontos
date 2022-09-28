@@ -2,6 +2,7 @@ package com.miniprojeto.trocadepontos.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.miniprojeto.trocadepontos.enums.Troca;
 import lombok.AllArgsConstructor;
@@ -39,11 +40,11 @@ public class UsuarioModel {
     @Column
     private BigDecimal pontuacao;
     @Column
+    @Enumerated (value = EnumType.STRING)
     private Troca troca;
 
-    //@JsonIgnore
+
     //@JsonManagedReference
-    //@LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<EmbalagemModel> embalagemModels;
 

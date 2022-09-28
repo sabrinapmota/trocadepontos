@@ -2,6 +2,7 @@ package com.miniprojeto.trocadepontos.services;
 
 import com.miniprojeto.trocadepontos.dto.UsuarioRequest;
 import com.miniprojeto.trocadepontos.dto.UsuarioResponse;
+import com.miniprojeto.trocadepontos.enums.Troca;
 import com.miniprojeto.trocadepontos.enums.factory.CalculoFactory;
 import com.miniprojeto.trocadepontos.exceptions.EntityNotFoundException;
 import com.miniprojeto.trocadepontos.model.UsuarioModel;
@@ -25,8 +26,6 @@ public class UsuarioServices {
 
     public UsuarioResponse cadastrarUsuario(UsuarioRequest usuarioRequest) {
 
-        BigDecimal reposta = (BigDecimal) CalculoFactory.CalculoPontuacao(usuarioRequest.getTroca()).calcular(new UsuarioModel());
-
 
         UsuarioModel usuarioModel = new UsuarioModel(null, usuarioRequest.getNome(), usuarioRequest.getCpf(),
                 usuarioRequest.getEmail(), usuarioRequest.getEndereco(), usuarioRequest.getEstado(), usuarioRequest.getTroca());
@@ -43,11 +42,22 @@ public class UsuarioServices {
     }
 
     public UsuarioModel alterarUser(Long idUsuario, UsuarioModel usuarioModel) {
-        UsuarioModel alterar = usuarioRepository.findById(usuarioModel.getIdUsuario()).get();
-
         usuarioRepository.findById(idUsuario).orElseThrow(
                 () -> new EntityNotFoundException("ID not found " + idUsuario));
-        return usuarioRepository.save(usuarioModel);
+
+        UsuarioModel alterar = usuarioRepository.findById(usuarioModel.getIdUsuario()).get();
+        if (usuarioModel.getTroca() == Troca.INGRESSO_CINEMA) {
+            alterar.setTroca(Troca.INGRESSO_CINEMA);
+        }
+        if (usuarioModel.getTroca() == Troca.DESCONTO_R$_30) {
+            alterar.setTroca(Troca.DESCONTO_R$_30);
+        }
+        if (usuarioModel.getTroca() == Troca.CELULAR) {
+            alterar.setTroca(Troca.CELULAR);
+        }
+        BigDecimal reposta = (BigDecimal) CalculoFactory.CalculoPontuacao(alterar.getTroca()).calcular(usuarioModel);
+        alterar.setPontuacao(reposta);
+        return usuarioRepository.save(alterar);
     }
 
     public void deletarUser(Long idUsuario) {
