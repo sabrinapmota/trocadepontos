@@ -30,7 +30,7 @@ public class UsuarioServices {
 
         UsuarioModel usuarioModel = new UsuarioModel(null,usuarioRequest.getNome(),usuarioRequest.getCpf(),
                 usuarioRequest.getEmail(),usuarioRequest.getEndereco(), usuarioRequest.getEstado(),usuarioRequest.getTroca());
-        usuarioModel.setPontuacao(null);
+        usuarioModel.setPontuacao(new BigDecimal(0));
         usuarioRepository.save(usuarioModel);
 
         UsuarioResponse usuarioResponse = new UsuarioResponse(usuarioModel.getIdUsuario(),usuarioModel.getNome(), usuarioModel.getPontuacao());
