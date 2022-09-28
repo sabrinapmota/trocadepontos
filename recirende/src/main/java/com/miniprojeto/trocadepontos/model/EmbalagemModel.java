@@ -9,6 +9,7 @@ import org.hibernate.annotations.Comment;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -26,14 +27,13 @@ public class EmbalagemModel implements Serializable {
     private String nomeMarca;
 
     @Column(length = 50)
-    @Size()
     private Integer numeroSerie;
 
     @Column(length = 50)
     private LocalDate dataCadastro = LocalDate.now();
 
     @Column(length = 50)
-    private  Integer pontoEmbalagem = 1500;
+    private BigDecimal pontoEmbalagem ;
 
 
     @ManyToOne

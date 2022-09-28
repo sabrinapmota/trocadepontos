@@ -31,12 +31,12 @@ public class EmbalagemController {
         return ResponseEntity.ok(service.cadastrarEmbalagem(embalagem));
     }
 
-    @PatchMapping(path ="/{id}")
-    public ResponseEntity<EmbalagemModel> alterarEmbalagem(@Valid @PathVariable Long id, @RequestBody EmbalagemModel embalagem){
-        return ResponseEntity.ok(service.alterarEmbalagem(id,embalagem));
+    @PatchMapping(path ="/{idEmbalagem}")
+    public ResponseEntity<EmbalagemModel> alterarEmbalagem(@Valid @PathVariable Long idEmbalagem, @RequestBody EmbalagemModel embalagem){
+        return ResponseEntity.ok(service.alterarEmbalagem(idEmbalagem,embalagem));
     }
 
-    @DeleteMapping (path = "/{id}")
+    @DeleteMapping (path = "/{idEmbalagem}")
     public String deletarEmbalagem(@PathVariable Long idEmbalagem){
         service.deletarEmbalagem(idEmbalagem);
         return "id "+idEmbalagem+" Deletado";

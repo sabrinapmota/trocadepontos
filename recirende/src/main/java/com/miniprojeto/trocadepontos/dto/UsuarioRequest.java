@@ -26,7 +26,7 @@ public class UsuarioRequest {
     private String endereco;
     @NotEmpty
     private String estado;
-    private BigDecimal pontuacao;
-    private Troca troca;
+
+    private Troca troca = null;
 
 }

@@ -18,19 +18,19 @@ public class UsuarioServices {
     @Autowired
     private IUsuarioRepository usuarioRepository;
 
-    public Optional<UsuarioModel> buscarId(Long id) {
-        return Optional.ofNullable(usuarioRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("ID not found " + id)));
+    public Optional<UsuarioModel> buscarId(Long idUsuario) {
+        return Optional.ofNullable(usuarioRepository.findById(idUsuario).orElseThrow(
+                () -> new EntityNotFoundException("ID not found " + idUsuario)));
     }
 
     public UsuarioResponse cadastrarUsuario(UsuarioRequest usuarioRequest) {
 
-        BigDecimal reposta = (BigDecimal) CalculoFactory.CalculoPontuacao(usuarioRequest.getTroca()).calcular(usuarioRequest);
-        usuarioRequest.setPontuacao(reposta);
+        BigDecimal reposta = (BigDecimal) CalculoFactory.CalculoPontuacao(usuarioRequest.getTroca()).calcular(new UsuarioModel());
+
 
         UsuarioModel usuarioModel = new UsuarioModel(null,usuarioRequest.getNome(),usuarioRequest.getCpf(),
-                usuarioRequest.getEmail(),usuarioRequest.getEndereco(), usuarioRequest.getEstado(),
-                usuarioRequest.getPontuacao(),usuarioRequest.getTroca());
+                usuarioRequest.getEmail(),usuarioRequest.getEndereco(), usuarioRequest.getEstado(),usuarioRequest.getTroca());
+        usuarioModel.setPontuacao(reposta);
         usuarioRepository.save(usuarioModel);
 
         UsuarioResponse usuarioResponse = new UsuarioResponse(usuarioModel.getIdUsuario(),usuarioModel.getNome(), usuarioModel.getPontuacao());
@@ -41,14 +41,14 @@ public class UsuarioServices {
         return usuarioRepository.findAll();
     }
 
-    public UsuarioModel alterarUser(Long id, UsuarioModel usuarioModel) {
-        usuarioRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("ID not found " + id));
+    public UsuarioModel alterarUser(Long idUsuario, UsuarioModel usuarioModel) {
+        usuarioRepository.findById(idUsuario).orElseThrow(
+                () -> new EntityNotFoundException("ID not found " + idUsuario));
         return usuarioRepository.save(usuarioModel);
     }
 
-    public void deletarUser(Long id) {
-        usuarioRepository.deleteById(id);
+    public void deletarUser(Long idUsuario) {
+        usuarioRepository.deleteById(idUsuario);
     }
 }
 

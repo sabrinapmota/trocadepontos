@@ -26,14 +26,14 @@ public class UsuarioController {
         return ResponseEntity.ok().body(usuarioServices.buscarTodos());
     }
 
-    @PutMapping(path = "/{id}")
-    public ResponseEntity<UsuarioModel> alterarUsuario(@Valid @PathVariable Long id, @RequestBody UsuarioModel usuarioModel) {
-        return ResponseEntity.ok().body(usuarioServices.alterarUser(id,usuarioModel));
+    @PutMapping(path = "/{idUsuario}")
+    public ResponseEntity<UsuarioModel> alterarUsuario(@Valid @PathVariable Long idUsuario, @RequestBody UsuarioModel usuarioModel) {
+        return ResponseEntity.ok().body(usuarioServices.alterarUser(idUsuario,usuarioModel));
     }
 
-    @GetMapping(path = "/{id}")
-    public ResponseEntity<Optional<UsuarioModel>> buscarUserId(@PathVariable Long id) {
-        return ResponseEntity.ok().body(usuarioServices.buscarId(id));
+    @GetMapping(path = "/{idUsuario}")
+    public ResponseEntity<Optional<UsuarioModel>> buscarUserId(@PathVariable Long idUsuario) {
+        return ResponseEntity.ok().body(usuarioServices.buscarId(idUsuario));
     }
 
     @PostMapping
@@ -43,9 +43,9 @@ public class UsuarioController {
         return ResponseEntity.ok().body(usuarioServices.cadastrarUsuario(usuarioRequest));
     }
 
-    @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Void> deletarUsuario(@PathVariable Long id) {
-        usuarioServices.deletarUser(id);
+    @DeleteMapping(path = "/{idUsuario}")
+    public ResponseEntity<Void> deletarUsuario(@PathVariable Long idUsuario) {
+        usuarioServices.deletarUser(idUsuario);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
