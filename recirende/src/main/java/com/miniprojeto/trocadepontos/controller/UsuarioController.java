@@ -1,7 +1,6 @@
 package com.miniprojeto.trocadepontos.controller;
 
 import com.miniprojeto.trocadepontos.dto.UsuarioRequest;
-import com.miniprojeto.trocadepontos.dto.UsuarioResponse;
 import com.miniprojeto.trocadepontos.model.UsuarioModel;
 import com.miniprojeto.trocadepontos.services.UsuarioServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,7 @@ public class UsuarioController {
 
     @PatchMapping(path = "/{idUsuario}")
     public ResponseEntity<UsuarioModel> alterarUsuario(@Valid @PathVariable Long idUsuario, @RequestBody UsuarioModel usuarioModel) {
-        return ResponseEntity.ok().body(usuarioServices.alterarUser(idUsuario,usuarioModel));
+        return ResponseEntity.ok().body(usuarioServices.alterarUser(idUsuario, usuarioModel));
     }
 
     @GetMapping(path = "/{idUsuario}")
