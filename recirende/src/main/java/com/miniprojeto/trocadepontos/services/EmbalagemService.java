@@ -17,8 +17,7 @@ public class EmbalagemService {
 
     @Autowired
     private IEmbalagemRepository repository;
-    @Autowired
-    private CalculoFactory calculoFactory;
+
 
     public List<EmbalagemModel> mostrarEmbalagens(){
         return repository.findAll();
@@ -26,7 +25,7 @@ public class EmbalagemService {
 
     public EmbalagemModel cadastrarEmbalagem(EmbalagemModel embalagemModel) {
 
-        BigDecimal reposta = (BigDecimal) calculoFactory.CalculoPontuacao(embalagemModel.getTroca());
+
         return repository.save(embalagemModel);
     }
 

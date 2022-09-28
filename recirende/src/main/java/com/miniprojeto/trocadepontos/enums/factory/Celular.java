@@ -1,15 +1,15 @@
 package com.miniprojeto.trocadepontos.enums.factory;
 
 
-import com.miniprojeto.trocadepontos.model.UsuarioModel;
+import com.miniprojeto.trocadepontos.dto.UsuarioRequest;
 
 import java.math.BigDecimal;
 
 public class Celular implements Calculo{
 
     @Override
-    public BigDecimal calcular(UsuarioModel usuarioModel) {
-        BigDecimal atualizandoPontucao = usuarioModel.getPontuacao().subtract(new BigDecimal("1500"));
+    public BigDecimal calcular(UsuarioRequest usuarioRequest) {
+        BigDecimal atualizandoPontucao = usuarioRequest.getPontuacao().subtract(new BigDecimal("1500"));
         return atualizandoPontucao;
 
     }

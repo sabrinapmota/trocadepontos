@@ -34,8 +34,7 @@ public class EmbalagemModel implements Serializable {
 
     @Column(length = 50)
     private  Integer pontoEmbalagem ;
-    @Column
-    private Troca troca = null;
+
 
     @ManyToOne
     @JoinColumn(name = "id_usuario", referencedColumnName = "idUsuario")

@@ -5,7 +5,7 @@ import com.miniprojeto.trocadepontos.enums.Troca;
 
 public class CalculoFactory {
 
-    public Calculo CalculoPontuacao(Troca troca) {
+    public static Calculo CalculoPontuacao(Troca troca) {
         if (troca.equals(Troca.INGRESSO_CINEMA)) {
             return new IngressoCinema();
         } else if (troca.equals(Troca.DESCONTO_R$_30)) {

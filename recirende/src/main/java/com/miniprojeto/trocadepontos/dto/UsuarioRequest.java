@@ -1,5 +1,6 @@
 package com.miniprojeto.trocadepontos.dto;
 
+import com.miniprojeto.trocadepontos.enums.Troca;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,5 +28,6 @@ public class UsuarioRequest {
     @NotEmpty
     private String Estado;
     private BigDecimal pontuacao;
+    private Troca troca = null;
 
 }

@@ -2,12 +2,14 @@ package com.miniprojeto.trocadepontos.services;
 
 import com.miniprojeto.trocadepontos.dto.UsuarioRequest;
 import com.miniprojeto.trocadepontos.dto.UsuarioResponse;
+import com.miniprojeto.trocadepontos.enums.factory.CalculoFactory;
 import com.miniprojeto.trocadepontos.exceptions.EntityNotFoundException;
 import com.miniprojeto.trocadepontos.model.UsuarioModel;
 import com.miniprojeto.trocadepontos.repository.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,10 +25,11 @@ public class UsuarioServices {
 
     public UsuarioResponse cadastrarUsuario(UsuarioRequest usuarioRequest) {
 
+        BigDecimal reposta = (BigDecimal) CalculoFactory.CalculoPontuacao(usuarioRequest.getTroca()).calcular(usuarioRequest);
 
         UsuarioModel usuarioModel = new UsuarioModel(null, usuarioRequest.getNome(), usuarioRequest.getCpf(),
                 usuarioRequest.getEmail(), usuarioRequest.getEndereco(), usuarioRequest.getEstado(),
-                usuarioRequest.getPontuacao());
+                usuarioRequest.getPontuacao(), usuarioRequest.getTroca());
         usuarioRepository.save(usuarioModel);
 
         UsuarioResponse usuarioResponse = new UsuarioResponse(usuarioModel.getNome(), usuarioModel.getPontuacao());

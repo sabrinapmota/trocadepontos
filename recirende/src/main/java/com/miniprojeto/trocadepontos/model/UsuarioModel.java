@@ -1,6 +1,7 @@
 package com.miniprojeto.trocadepontos.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.miniprojeto.trocadepontos.enums.Troca;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,11 +34,13 @@ public class UsuarioModel {
     @Column(nullable = false, unique = true, length = 20)
     private String estado;
     private BigDecimal pontuacao;
+    @Column
+    private Troca troca = null;
 
     @OneToMany(mappedBy = "usuario", targetEntity = EmbalagemModel.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<EmbalagemModel> embalagemModels;
 
 
-    public UsuarioModel(Object o, String nome, String cpf, String email, String endereco, String estado, BigDecimal pontuacao) {
+    public UsuarioModel(Object o, String nome, String cpf, String email, String endereco, String estado, BigDecimal pontuacao,Troca troca1) {
     }
 }
