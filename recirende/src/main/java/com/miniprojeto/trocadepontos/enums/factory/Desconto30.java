@@ -8,6 +8,7 @@ public class Desconto30 implements Calculo{
 
     @Override
     public BigDecimal calcular(UsuarioModel usuarioModel) {
-        return null;
+        BigDecimal newpoint1 = usuarioModel.getPontuacao().subtract(new BigDecimal("200"));
+        return newpoint1;
     }
 }
