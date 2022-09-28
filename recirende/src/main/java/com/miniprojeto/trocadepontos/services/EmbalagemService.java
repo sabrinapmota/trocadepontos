@@ -26,21 +26,35 @@ public class EmbalagemService {
     @Autowired
     private IUsuarioRepository usuarioRepository;
 
+    @Autowired
+    private IUsuarioRepository usuarioRepository;
+
 
     public List<EmbalagemModel> mostrarEmbalagens(){
+<<<<<<< HEAD
         List<EmbalagemModel > embalagemModels = repository.findAll();
         return embalagemModels;
+=======
+        List<EmbalagemModel> embalagens = repository.findAll();
+        return embalagens;
+>>>>>>> d32411e5ffd5353a8412c080cd8d37a8dd9dfbe1
     }
 
     public EmbalagemModel cadastrarEmbalagem(EmbalagemModel embalagemModel) {
 
         embalagemModel.setPontoEmbalagem(new BigDecimal(1500));
 
+<<<<<<< HEAD
         //Buscar usuario através do "id" que está na embalagemModel
         //Com o usuario pegar get.Ponto
         UsuarioModel usuarioModel = usuarioRepository.findById(embalagemModel.getUsuario().getIdUsuario()).get();
         usuarioModel.setPontuacao(usuarioModel.getPontuacao().add(embalagemModel.getPontoEmbalagem()));
         usuarioRepository.save(usuarioModel);
+=======
+        UsuarioModel usuarioModel = usuarioRepository.findById(embalagemModel.getUsuario().getIdUsuario()).orElseThrow();
+        usuarioModel.setPontuacao(usuarioModel.getPontuacao().add(embalagemModel.getPontoEmbalagem()));
+        embalagemModel.setUsuario(usuarioModel);
+>>>>>>> d32411e5ffd5353a8412c080cd8d37a8dd9dfbe1
 
         return repository.save(embalagemModel);
     }

@@ -30,14 +30,18 @@ public class UsuarioServices {
 
         UsuarioModel usuarioModel = new UsuarioModel(null,usuarioRequest.getNome(),usuarioRequest.getCpf(),
                 usuarioRequest.getEmail(),usuarioRequest.getEndereco(), usuarioRequest.getEstado(),usuarioRequest.getTroca());
+<<<<<<< HEAD
         usuarioModel.setPontuacao(new BigDecimal("0"));
+=======
+        usuarioModel.setPontuacao(new BigDecimal(0));
+>>>>>>> d32411e5ffd5353a8412c080cd8d37a8dd9dfbe1
         usuarioRepository.save(usuarioModel);
 
         UsuarioResponse usuarioResponse = new UsuarioResponse(usuarioModel.getIdUsuario(),usuarioModel.getNome(), usuarioModel.getPontuacao());
         return usuarioResponse;
     }
 
-    public List<UsuarioModel> buscarTodos() {
+    public List<UsuarioModel> buscarTodos(){
         return usuarioRepository.findAll();
     }
 
