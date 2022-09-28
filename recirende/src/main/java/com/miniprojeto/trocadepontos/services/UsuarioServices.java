@@ -37,7 +37,7 @@ public class UsuarioServices {
         return usuarioResponse;
     }
 
-    public List<UsuarioModel> buscarTodos() {
+    public List<UsuarioModel> buscarTodos(){
         return usuarioRepository.findAll();
     }
 

@@ -1,5 +1,8 @@
 package com.miniprojeto.trocadepontos.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.miniprojeto.trocadepontos.enums.Troca;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,6 +20,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "embalagens")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idEmbalagem")
+
 public class EmbalagemModel implements Serializable {
 
     @Id
@@ -35,7 +40,7 @@ public class EmbalagemModel implements Serializable {
     @Column(length = 50)
     private BigDecimal pontoEmbalagem ;
 
-
+    //@JsonBackReference
     @ManyToOne
     @JoinColumn(name = "id_usuario", referencedColumnName = "idUsuario")
     private UsuarioModel usuario;

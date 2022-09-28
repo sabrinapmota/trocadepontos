@@ -7,6 +7,7 @@ import com.miniprojeto.trocadepontos.exceptions.EntityNotFoundException;
 import com.miniprojeto.trocadepontos.model.EmbalagemModel;
 import com.miniprojeto.trocadepontos.model.UsuarioModel;
 import com.miniprojeto.trocadepontos.repository.IEmbalagemRepository;
+import com.miniprojeto.trocadepontos.repository.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -21,17 +22,22 @@ public class EmbalagemService {
     @Autowired
     private IEmbalagemRepository repository;
 
+    @Autowired
+    private IUsuarioRepository usuarioRepository;
+
 
     public List<EmbalagemModel> mostrarEmbalagens(){
-        return repository.findAll();
+        List<EmbalagemModel> embalagens = repository.findAll();
+        return embalagens;
     }
 
     public EmbalagemModel cadastrarEmbalagem(EmbalagemModel embalagemModel) {
 
         embalagemModel.setPontoEmbalagem(new BigDecimal(1500));
 
-        UsuarioModel usuarioModel = new UsuarioModel();
-        usuarioModel.setPontuacao(embalagemModel.getPontoEmbalagem().add(new BigDecimal(1500)));
+        UsuarioModel usuarioModel = usuarioRepository.findById(embalagemModel.getUsuario().getIdUsuario()).orElseThrow();
+        usuarioModel.setPontuacao(usuarioModel.getPontuacao().add(embalagemModel.getPontoEmbalagem()));
+        embalagemModel.setUsuario(usuarioModel);
 
         return repository.save(embalagemModel);
     }
