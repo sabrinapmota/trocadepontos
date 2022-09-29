@@ -50,4 +50,12 @@ public class EmbalagemServiceTest {
         mockRepository.save(new EmbalagemModel());
         Mockito.verify(mockRepository ,Mockito.times(1)).save(new EmbalagemModel());
     }
+
+    @Test
+    void alterarEmbalagemTest() {
+
+        Mockito.when(mockRepository.existsById(Mockito.anyLong())).thenReturn(true);
+        mockRepository.save(new EmbalagemModel());
+        Mockito.verify(mockRepository ,Mockito.times(1)).save(new EmbalagemModel());
+    }
 }

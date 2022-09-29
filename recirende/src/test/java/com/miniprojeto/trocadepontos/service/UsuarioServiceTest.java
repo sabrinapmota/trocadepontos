@@ -13,9 +13,12 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 public class UsuarioServiceTest {
@@ -35,15 +38,14 @@ public class UsuarioServiceTest {
     @Test
     void buscaUsuarioTest() {
         List<UsuarioModel> listaUsuario = mockUsuario.buscarTodos();
-        Assertions.assertTrue(listaUsuario.isEmpty());    }
-
+        Assertions.assertTrue(listaUsuario.isEmpty());
+    }
     @Test
     void buscaIdTest() {
         Long idUsuario = Long.valueOf(1);
         Optional<UsuarioModel> usuario = mockUsuario.buscarId(idUsuario);
         Assertions.assertTrue(usuario.isEmpty());
     }
-
     @Test
     void cadastrarUsuarioTest() {
 
@@ -51,6 +53,14 @@ public class UsuarioServiceTest {
         Mockito.when(mockRepository.existsById(Mockito.anyLong())).thenReturn(true);
         mockRepository.save(new UsuarioModel());
         //veirificar chamando o repository uma unica vez e salva no usuario model.
-        Mockito.verify(mockRepository ,Mockito.times(1)).save((new UsuarioModel()));
+        Mockito.verify(mockRepository, Mockito.times(1)).save((new UsuarioModel()));
     }
+    @Test
+    void alterarUsuarioTest() {
+
+        Mockito.when(mockRepository.existsById(Mockito.anyLong())).thenReturn(true);
+        mockRepository.save(new UsuarioModel());
+        Mockito.verify(mockRepository, Mockito.times(1)).save((new UsuarioModel()));
+    }
+
 }
