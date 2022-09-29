@@ -10,7 +10,7 @@ public class IngressoCinema implements Calculo{
 
     @Override
     public BigDecimal calcular(UsuarioModel usuarioModel) {
-        BigDecimal novaPontucao = usuarioModel.getPontuacao().subtract(new BigDecimal("500"));
+        BigDecimal novaPontucao = usuarioModel.getPontuacao().subtract(new BigDecimal("5000"));
         return novaPontucao;
 
     }//return usuarioModel.getPontuacao().subtract(new BigDecimal("500"));

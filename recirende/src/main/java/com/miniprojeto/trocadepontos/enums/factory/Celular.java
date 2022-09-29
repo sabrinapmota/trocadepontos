@@ -10,7 +10,7 @@ public class Celular implements Calculo{
 
     @Override
     public BigDecimal calcular(UsuarioModel usuarioModel) {
-        BigDecimal atualizandoPontucao = usuarioModel.getPontuacao().subtract(new BigDecimal("1500"));
+        BigDecimal atualizandoPontucao = usuarioModel.getPontuacao().subtract(new BigDecimal("20000"));
         return atualizandoPontucao;
 
     }
