@@ -1,17 +1,15 @@
 package com.miniprojeto.trocadepontos.model;
 
-import com.fasterxml.jackson.annotation.*;
-import com.miniprojeto.trocadepontos.enums.Troca;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
@@ -26,10 +24,10 @@ public class UsuarioModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
 
-
     @Column()
     private String nome;
     @Column()
+    @JsonIgnore
     private String cpf;
     @Column()
     private String email;
@@ -37,17 +35,17 @@ public class UsuarioModel {
     private String endereco;
     @Column()
     private String estado;
-    private BigDecimal pontuacao = BigDecimal.ZERO;
     @Column
-    private Troca troca;
+    private BigDecimal pontuacao;
+    @Column
 
-    //@JsonIgnore
-    //@JsonManagedReference
-    //@LazyCollection(LazyCollectionOption.FALSE)
+    private String troca;
+
+
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<EmbalagemModel> embalagemModels;
 
-    public UsuarioModel(Long idUsuario, String nome, String cpf, String email, String endereco, String estado, Troca troca) {
+    public UsuarioModel(Long idUsuario, String nome, String cpf, String email, String endereco, String estado, String troca) {
         this.idUsuario = idUsuario;
         this.nome = nome;
         this.cpf = cpf;
@@ -56,4 +54,5 @@ public class UsuarioModel {
         this.estado = estado;
         this.troca = troca;
     }
+
 }
