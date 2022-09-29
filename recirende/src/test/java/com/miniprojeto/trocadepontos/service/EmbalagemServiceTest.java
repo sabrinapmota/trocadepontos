@@ -1,11 +1,8 @@
 package com.miniprojeto.trocadepontos.service;
 
 import com.miniprojeto.trocadepontos.model.EmbalagemModel;
-import com.miniprojeto.trocadepontos.model.UsuarioModel;
 import com.miniprojeto.trocadepontos.repository.IEmbalagemRepository;
-import com.miniprojeto.trocadepontos.repository.IUsuarioRepository;
 import com.miniprojeto.trocadepontos.services.EmbalagemService;
-import com.miniprojeto.trocadepontos.services.UsuarioServices;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -48,6 +45,14 @@ public class EmbalagemServiceTest {
 
     @Test
     void cadastrarEmbalagemTest() {
+
+        Mockito.when(mockRepository.existsById(Mockito.anyLong())).thenReturn(true);
+        mockRepository.save(new EmbalagemModel());
+        Mockito.verify(mockRepository ,Mockito.times(1)).save(new EmbalagemModel());
+    }
+
+    @Test
+    void alterarEmbalagemTest() {
 
         Mockito.when(mockRepository.existsById(Mockito.anyLong())).thenReturn(true);
         mockRepository.save(new EmbalagemModel());

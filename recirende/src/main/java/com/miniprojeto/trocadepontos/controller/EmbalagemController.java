@@ -27,7 +27,7 @@ public class EmbalagemController {
     }
 
     @GetMapping(path = "/{idEmbalagem}")
-    public ResponseEntity<Optional<EmbalagemModel>> buscarUserId(@PathVariable Long idEmbalagem) {
+    public ResponseEntity<Optional<EmbalagemModel>> buscarEmbalagemId(@PathVariable Long idEmbalagem) {
         return ResponseEntity.ok().body(service.buscarId(idEmbalagem));
     }
 
