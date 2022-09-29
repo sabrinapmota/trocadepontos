@@ -1,11 +1,8 @@
 package com.miniprojeto.trocadepontos.service;
 
 import com.miniprojeto.trocadepontos.model.EmbalagemModel;
-import com.miniprojeto.trocadepontos.model.UsuarioModel;
 import com.miniprojeto.trocadepontos.repository.IEmbalagemRepository;
-import com.miniprojeto.trocadepontos.repository.IUsuarioRepository;
 import com.miniprojeto.trocadepontos.services.EmbalagemService;
-import com.miniprojeto.trocadepontos.services.UsuarioServices;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

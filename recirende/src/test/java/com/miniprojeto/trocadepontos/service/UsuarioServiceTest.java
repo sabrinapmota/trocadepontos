@@ -20,7 +20,7 @@ import java.util.Optional;
 @SpringBootTest
 public class UsuarioServiceTest {
 
-    @Mock
+    @MockBean
     UsuarioServices mockUsuario;
 
     @MockBean
