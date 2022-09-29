@@ -33,7 +33,9 @@ public class EmbalagemService {
         embalagemModel.setPontoEmbalagem(new BigDecimal(1500));
 
         UsuarioModel usuarioModel = usuarioRepository.findById(embalagemModel.getUsuario().getIdUsuario()).get();
+
         usuarioModel.setPontuacao(usuarioModel.getPontuacao().add(embalagemModel.getPontoEmbalagem()));
+
         usuarioRepository.save(usuarioModel);
 
         return repository.save(embalagemModel);
